@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <title>Django-CRUD</title>
+</head>
+<body>
+
+    <div class="container mt-2">
+        <h2 class="text-center alert alert-danger">Class Based View ModelForm CRUD Project</h2>
+        {% block body %}
+        
+        {% endblock body %}
+    </div>
+
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/jQuery.js' %}"></script>
+</body>
+</html>

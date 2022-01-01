@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-4">
+            <h4 class="text-center alert alert-info">Add New Student</h4>
+            <form method="post">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="ADD" class="btn btn-sm btn-primary">
+            </form>
+        </div>
+        <div class="col-sm-7 offset-1">
+            <h4 class="text-center alert alert-info">Student Informations</h4>
+            {% if std %}
+            <table class="table table-bordered text-center">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for std in std %}
+                    <tr>
+                        <th scope="row">{{forloop.counter}}</th>
+                        <td>{{std.name}}</td>
+                        <td>{{std.email}}</td>
+                        <td>{{std.password}}</td>
+                        <td>
+                            <a href="{% url 'update' std.id %}" class="btn btn-sm btn-danger">Edit</a>
+                            <a href="{% url 'delete' std.id %}" class="btn btn-sm btn-warning">Delete</a>
+                            {% comment %} <form action="{% url 'update' std.id %}" class="d-inline" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-sm btn-danger" value='Edit'>
+                            </form> {% endcomment %}
+                            
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+              </table>
+
+            {% else %}
+            <h2>No Data Available Here!</h2>
+            {% endif %}
+        </div>
+    </div>
+{% endblock body %}
